@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <link rel="shortcut icon" href="">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}">
+    <style>body{padding-top:50px;}.starter-template{padding:40px 15px;text-align:center;}</style>
+
+    <!--[if IE]>
+        <script src="https://cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+      <div class="page-header">
+        <h1>Latest Reports</h1>
+      </div>
+      <div >
+        <div class="col-md-6">
+		<h3 class = "page-header">Most selling cycles</h3>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Cycle Brand</th>
+                <th>Model</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Veloce</td>
+                <td>Legacy</td>
+                <td>24500</td>
+              </tr>
+              <tr>
+                <td>Raleigh</td>
+                <td>Talus 3</td>
+                <td>25000</td>
+              </tr>
+              <tr>
+                <td>Upland</td>
+                <td>Vanguard 100</td>
+                <td>16200</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+		
+		
+        <div class="col-md-6">
+		<h3 class = "page-header">Latest Imports</h3>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Cycle Brand</th>
+                <th>Model</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Nekro</td>
+                <td>Hades 15</td>
+                <td>17500</td>
+              </tr>
+              <tr>
+                <td>Phoenix</td>
+                <td>1700</td>
+                <td>18000</td>
+              </tr>
+              <tr>
+                <td>Nekro</td>
+                <td>Zen</td>
+                <td>24000</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+		<h3 class = "page-header">Best Seller (This week)</h3>
+		<table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Store</th>
+                <th>Location</th>
+                <th>Total sale</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Cycle Life Exclusive</td>
+                <td>Tejgaon</td>
+                <td>15</td>
+              </tr>
+              <tr>
+                <td>Lion Cycle</td>
+                <td>Dhanmondi</td>
+                <td>11</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+		
+      </div>
+		<div class = "page-header"></div>
+
+    <script src="{% static 'js/jquery-1.7.1.min.js' %}"></script>
+    <script src="{% static 'js/dropdown-propagation.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+
+</html>

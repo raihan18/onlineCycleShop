@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Cycleoholic | add product
+{% endblock title %}
+
+{% block sideblock %}
+	<div class="jumbotron">
+		<h1 style="text-align:center"><span class="glyphicon glyphicon-plus-sign"></span></h1><br>
+	</div>
+	{% ifequal conf "true" %}
+		<div class="alert alert-info alert-dismissible" role="alert">Product successfully added!</div>
+	{% endifequal %}
+{% endblock sideblock %}
+
+{% block body %}
+	<div class="jumbotron">
+		<h2 style="text-align:center">Add new Product</h2><hr>
+		<h4 style="text-align:center"><b>{{user.first_name}}</b></h4>
+	</div>
+	<div class="row">
+		<div class = "col-md-4"></div>
+
+		<!--FORM TO SHOW FOR ADDING PRODUCT -->
+		<div class = "col-md-4">
+			<form method="POST">
+				{% csrf_token %}		
+				<form class="form-signin" role="form">
+				<label>Product name</label>
+				<input type="text" class="form-control" placeholder="Product name" name="name" required><br>
+
+				<label>Product type</label>
+				<input type="text" class="form-control" placeholder="Cycle / Helmet / Gloves / Mudguard" name="product_type" required> <br>
+
+				<label>Price</label>
+				<input type="number" min="0" class="form-control" placeholder="Price" name="price" required><br>
+
+				<label>Units added</label>
+				<input type="number" min="0" class="form-control" placeholder="Unit" name="unit" required><br>
+
+				<label>Product Details</label>
+				<textarea class="form-control" rows="3" placeholder="Description" name="details"></textarea>
+				<br>
+				<input class="btn btn-lg btn-primary btn-block" type="submit" value="Add product">
+
+			</form>
+		</div>
+		<div class = "col-md-4"></div>
+	</div>	
+{% endblock body %}

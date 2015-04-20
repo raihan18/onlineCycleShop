@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Cycleoholic | {{product.product_name}}
+{% endblock title %}
+
+{% block sideblock %}
+   	<div class="jumbotron">
+		<h3 style="text-align:center">
+			<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+			   Review <hr>
+		</h3>
+	</div>
+	{% if not perms.cycleoholic.add_product and user.is_authenticated %}
+		<div class="row">
+			<div class="col-md-1"></div>
+			<div class="col-md-10">
+		   		<div class="">
+					<h4 style="text-align:center">Post your review</h4><hr>
+				</div>
+				<form method="POST">
+				{% csrf_token %}
+					<textarea class="form-control" rows="3" placeholder="write here.." name="review"></textarea><br>
+					<input type="number" min="0" max="10" class="form-control" placeholder="Rating" name="rating" required><br>
+					<input class="btn btn-primary btn-block" type="submit" value="Post">
+				</form>
+			</div>
+		</div>
+	{% endif %}
+{% endblock sideblock %}
+
+{% block body %}
+   	<div class="jumbotron" style="text-align:center">
+		<h3 style="text-align:center">{{product.product_name}}</h3><br>
+		<label style="text-align:center">Details: {{product.product_details}} |</label>
+		<label>Average Rating: {{rating}}</label>
+	</div>
+
+	<div>
+		<h4>Reviews</h4><hr>
+
+		{% for r in reviews %}
+			<h5><b>{{r.user}}: </b>{{r.user_review}}</h5>
+			<label>Rating: {{r.user_rating}}</label><hr>
+		{% endfor %}
+	</div>
+
+{% endblock body %}

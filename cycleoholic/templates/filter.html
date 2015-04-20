@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Cycleoholic | Filter Products
+{% endblock title %}
+
+{% block body %}
+    <div class="jumbotron">
+    	<h2 style="text-align:center">
+    		<span class="glyphicon glyphicon-align-right" aria-hidden="true"></span>
+    		<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+    		Finder
+    	</h2>
+	</div>
+
+	<!-- filter options -->
+	<div class = "row">
+		<form method="POST">
+		{% csrf_token %}
+			<div class="col-md-1"></div>
+			<div class = "col-md-2">
+				<label>Store</label>
+				<select class = "form-control" type="text" name="store">
+					<option value="null" selected>-</option>
+					<option value="cle">Cycle Life</option>
+					<option value="lion">Lion Cycle</option>
+					<option value="masterwheels">Masterwheels</option>
+					<option value="bshopbd">Bicycle Shop bd.</option>
+				</select>			
+			</div>
+			<div class = "col-md-2">
+				<label>Product Type</label>
+				<select class="form-control" type="text" name="product_type">
+					<option value="null" selected>-</option>
+					<option value="cycle">Cycle</option>
+					<option value="helmet">Helmet</option>
+					<option value="gloves">Gloves</option>
+					<option value="mudguard">Mudguard</option>
+				</select>
+			</div>
+			<div class = "col-md-2">
+				<label>Price</label>
+				<input type="number" min="0" class="form-control" placeholder="Minimum" name="price_min">
+			</div>
+			<div class = "col-md-2">
+				<label>Price</label>
+				<input type="number" min="0" class="form-control" placeholder="Maximum" name="price_max">
+			</div>
+			<div class="col-md-2">
+				<label>_______________</label>
+				<button class="btn btn-primary btn-block" type="submit" value="search"><span class="glyphicon glyphicon-search"></span>   Search</button>
+			</div>
+		</form>
+	</div>
+
+	<div class="page-header">
+			<h4>Search result</h4>
+	</div>
+	<br>
+		<table style = "align:center" class="table table-striped">
+			<thead>
+			  <tr>
+				<th class="col-md-2">Product name</th>
+				<th class="col-md-1">Type</th>
+				<th class="col-md-1">Price</th>
+				<th class="col-md-1">Units available</th>
+				<th class="col-md-1">Review</th>
+				<th class="col-md-2">Store</th>
+			  </tr>
+			</thead>
+			<tbody>
+
+			  	{% for p in products %}
+				<tr>
+				  	<td>{{p.product_name}}</td>
+					<td>{{p.product_type}}</td>
+					<td>{{p.unit_price}}</td>
+					<td>{{p.unit_available}}</td>
+					<td><a class="btn btn-primary" href="{% url 'review' p.pk %}" target="_blank"><span class="glyphicon glyphicon-ok"></span></a></td>
+					<td>{{p.store_owns}}</td>
+			  	</tr>
+			  	{% endfor %}
+			</tbody>
+		  </table>
+	</div>
+
+{% endblock body %}

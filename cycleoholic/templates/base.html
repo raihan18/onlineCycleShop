@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{% block title %}Cycleoholic {% endblock %}</title>
+
+    <link rel="shortcut icon" href="">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}">
+    <style>body{padding-top:50px;}.starter-template{padding:40px 15px;text-align:center;}</style>
+
+    <!--[if IE]>
+        <script src="https://cdn.jsdelivr.net/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" >
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{% url 'home' %}"><b><font face="Trebuchet MS, Arial, Helvetica, sans-serif" color="white">Cycleoholic</font></b></a>
+            </div>
+
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" style="color:white">Cycle stores <span class="caret"></span></a>
+                      <ul class="dropdown-menu" role="menu">
+                        <li><a href="{% url 'inventory' 'cle' 'cycle' %}">Cycle Life Exclusive</a></li>
+                        <li><a href="{% url 'inventory' 'lion' 'cycle' %}">Lion Cycle Store</a></li>
+                        <li><a href="{% url 'inventory' 'masterwheels' 'cycle' %}">MasterWheels</a></li>
+                        <li><a href="{% url 'inventory' 'bshopbd' 'cycle' %}">Bicycle Shop bd</a></li>
+                      </ul>
+                    </li>
+                    <li><a href="{% url 'contacts'%}" style="color:white">Contacts</a></li>
+                    <li><a href="{% url 'about' %}" style="color:white">About</a></li>
+                </ul> <!-- nav navbar-nav -->
+
+                <!-- nav navbar-right -->
+                <div class="navbar-right">
+                    <ul class="nav navbar-nav">
+                    {% if user.is_authenticated %}
+                        {% if perms.cycleoholic.add_product %}
+                            <li><a href="{% url 'addProduct' %}" style="color:white">Add Product</a></li>
+                            <li><a href="{% url 'inventory' user.username 'cycle' %}" style="color:white">View Inventory</a></li>
+                        {% else %}
+                            <li><a href="{% url 'filter' %}" style="color:white"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>   Advanced Filter</a></li>
+                        {% endif %}
+                        <li><a href="#" style="color:white">|</a></li>
+                        <li><a href="#" style="color:white">Hello, {{user.username}}</a></li>
+                        <li><a href="{% url 'logout' %}?next=/cycleoholic/" style="color:white">Logout</a></li>
+                    {% else %}
+                        <li><a href="{% url 'register' %}" style="color:white">Register Here</a></li>
+                        <li><a href="{% url 'login' %}" style="color:white">Sign in</a></li>
+                    {% endif %}
+                    </ul>
+                </div>
+            </div><!--.nav-collapse -->
+        </div>
+    </nav>
+
+    <div class="row">
+        <div class="col-md-2">
+            {% block sideblock %}
+
+            {% endblock sideblock %}
+        </div>
+
+        <div class="col-md-8">
+            {% block body %}
+                <div class="jumbotron">
+                <h2 style="text-align:center">Latest Reports | Cycleoholic</h2>
+                </div>
+                <div>
+                <div class="col-md-6">
+                <h3 class = "page-header">Most selling cycles</h3>
+                <table class="table table-striped">
+                <thead>
+                <tr>
+                <th>Cycle Brand</th>
+                <th>Model</th>
+                <th>Price</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                <td>Veloce</td>
+                <td>Legacy</td>
+                <td>24500</td>
+                </tr>
+                <tr>
+                <td>Raleigh</td>
+                <td>Talus 3</td>
+                <td>25000</td>
+                </tr>
+                <tr>
+                <td>Upland</td>
+                <td>Vanguard 100</td>
+                <td>16200</td>
+                </tr>
+                </tbody>
+                </table>
+                </div>
+
+
+                <div class="col-md-6">
+                <h3 class = "page-header">Latest Imports</h3>
+                <table class="table table-striped">
+                <thead>
+                <tr>
+                <th>Cycle Brand</th>
+                <th>Model</th>
+                <th>Price</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                <td>Nekro</td>
+                <td>Hades 15</td>
+                <td>17500</td>
+                </tr>
+                <tr>
+                <td>Phoenix</td>
+                <td>1700</td>
+                <td>18000</td>
+                </tr>
+                <tr>
+                <td>Nekro</td>
+                <td>Zen</td>
+                <td>24000</td>
+                </tr>
+                </tbody>
+                </table>
+                </div>
+                </div>
+
+                <div class="row">
+                <div class="col-md-6">
+                <h3 class = "page-header">Best Seller (This week)</h3>
+                <table class="table table-striped">
+                <thead>
+                <tr>
+                <th>Store</th>
+                <th>Location</th>
+                <th>Total sale</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                <td>Cycle Life Exclusive</td>
+                <td>Tejgaon</td>
+                <td>15</td>
+                </tr>
+                <tr>
+                <td>Lion Cycle</td>
+                <td>Dhanmondi</td>
+                <td>11</td>
+                </tr>
+                </tbody>
+                </table>
+                </div>
+
+                <div class="col-md-6">
+                <h3 class = "page-header">New Accessories</h3>
+                <table class="table table-striped">
+                <thead>
+                <tr>
+                <th>Product</th>
+                <th>Name</th>
+                <th>Price</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                <td>Helmet</td>
+                <td>GUB SS '18</td>
+                <td>1800</td>
+                </tr>
+                <tr>
+                <td>Helmet</td>
+                <td>Turbo 500</td>
+                <td>2100</td>
+                </tr>
+                <tr>
+                <td>Mudguard</td>
+                <td>Gub mud protection</td>
+                <td>500</td>
+                </tr>                
+                </tbody>
+                </table>
+                </div>
+
+                </div>
+            {% endblock body %}            
+        </div>
+
+        <div class="col-md-2"></div>
+    </div>
+
+    <br><br><hr>
+    <footer>
+            <!--<p class="pull-right"><a href="#">Back to top</a></p> -->
+            <p style = "text-align:center">&copy; 2015 Cycleoholic, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    </footer>
+
+    <script src="{% static 'js/jquery-1.7.1.min.js' %}"></script>
+    <script src="{% static 'js/dropdown-propagation.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript">
+      $('#myButton').tooltip();
+      $('#myPopover').popover();
+    </script> 
+    <script type="text/javascript">
+    $(function () { $("[data-toggle='popover']").popover(); });
+    </script>
+</body>
+</html>

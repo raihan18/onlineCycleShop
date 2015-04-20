@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Cycleoholic | Register
+{% endblock title %}
+
+{% block body %}
+    <div class="jumbotron" style="text-align:center">
+		<h2>Create you own Account</h2>
+		<hr>
+		<a class="btn btn-lg btn-primary" href="{% url 'create_store' %}">Open a new store</a>
+	</div>
+
+	<div class="row">
+		<div class="col-md-4"></div>
+
+		<div class="col-md-4">
+			<form class="form-signin" method="POST">
+				{% csrf_token %}
+				<label>Full Name</label>
+				<input class="form-control" type="text" name="full_name" placeholder="Full name" maxlength="254" required>
+				<br>
+				<label>Username</label>
+				<input class="form-control" type="text" name="username" placeholder="Username" maxlength="254" required>
+				<br>
+				<label>Password</label>
+				<input class="form-control" type="password" name="password" placeholder="Password" maxlength="254" required>
+				<br>
+				<label>Email address</label>
+				<input class="form-control" type="email" name="email" placeholder="Email" maxlength="254" required>
+				<br>
+				<button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
+			</form>
+		</div>		
+		
+		<div class="col-md-4"></div>
+	</div>
+
+{% endblock body %}
